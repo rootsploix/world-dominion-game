@@ -6,10 +6,13 @@
   "scripts": {
     "start": "node server/server.js",
     "dev": "nodemon server/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo \"Static files - no build needed\"",
-    "lint": "echo \"Linting not configured yet\"",
-    "clean": "rm -rf node_modules package-lock.json"
+    "build": "node deploy.js",
+    "test": "echo \"Tests coming soon\"",
+    "lint": "echo \"ESLint coming soon\"",
+    "clean": "rm -rf node_modules package-lock.json",
+    "deploy": "node deploy.js && echo \"Ready for deployment!\"",
+    "serve": "npm start",
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [
     "game",
