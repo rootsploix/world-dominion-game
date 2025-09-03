@@ -49,12 +49,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/world-dominion-game.git"
+    "url": "https://github.com/rootsploix/world-dominion-game.git"
   },
   "bugs": {
-    "url": "https://github.com/your-username/world-dominion-game/issues"
+    "url": "https://github.com/rootsploix/world-dominion-game/issues"
   },
-  "homepage": "https://github.com/your-username/world-dominion-game#readme",
+  "homepage": "https://github.com/rootsploix/world-dominion-game#readme",
   "preferGlobal": false,
   "private": false,
   "os": [
