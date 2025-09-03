@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌍 World Dominion - Dünya Hakimiyeti Oyunu</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Giriş Ekranı -->
+    <div id="login-screen" class="screen active">
+        <div class="login-container">
+            <h1 class="game-title">
+                <i class="fas fa-globe"></i>
+                WORLD DOMINION
+            </h1>
+            <p class="game-subtitle">Dünyayı Ele Geçir, Tarih Yaz!</p>
+            
+            <div class="login-form">
+                <input type="text" id="player-name" placeholder="İmparatorluk Adınızı Girin..." maxlength="20">
+                <select id="country-select">
+                    <option value="">Ülkenizi Seçin...</option>
+                    <option value="turkey">🇹🇷 Türkiye</option>
+                    <option value="usa">🇺🇸 Amerika</option>
+                    <option value="russia">🇷🇺 Rusya</option>
+                    <option value="china">🇨🇳 Çin</option>
+                    <option value="germany">🇩🇪 Almanya</option>
+                    <option value="france">🇫🇷 Fransa</option>
+                    <option value="uk">🇬🇧 İngiltere</option>
+                    <option value="japan">🇯🇵 Japonya</option>
+                    <option value="india">🇮🇳 Hindistan</option>
+                    <option value="brazil">🇧🇷 Brezilya</option>
+                </select>
+                <button id="start-game-btn">
+                    <i class="fas fa-rocket"></i>
+                    Oyuna Başla
+                </button>
+            </div>
+
+            <div class="game-stats">
+                <div class="stat">
+                    <i class="fas fa-users"></i>
+                    <span>Aktif Oyuncu: <span id="online-players">0</span></span>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-trophy"></i>
+                    <span>Toplam Oyun: <span id="total-games">0</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ana Oyun Ekranı -->
+    <div id="game-screen" class="screen">
+        <!-- Üst Panel -->
+        <div class="top-panel">
+            <div class="player-info">
+                <h2 id="player-empire">🏰 İmparatorluk Adı</h2>
+                <div class="resources">
+                    <span class="resource">
+                        <i class="fas fa-coins"></i>
+                        <span id="gold">1000</span>
+                    </span>
+                    <span class="resource">
+                        <i class="fas fa-industry"></i>
+                        <span id="production">100</span>
+                    </span>
+                    <span class="resource">
+                        <i class="fas fa-flask"></i>
+                        <span id="science">50</span>
+                    </span>
+                    <span class="resource">
+                        <i class="fas fa-shield-alt"></i>
+                        <span id="military">75</span>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="game-controls">
+                <button class="control-btn" id="tech-tree-btn">
+                    <i class="fas fa-sitemap"></i>
+                    Teknoloji
+                </button>
+                <button class="control-btn" id="diplomacy-btn">
+                    <i class="fas fa-handshake"></i>
+                    Diplomasi
+                </button>
+                <button class="control-btn" id="military-btn">
+                    <i class="fas fa-sword"></i>
+                    Ordu
+                </button>
+                <button class="control-btn" id="settings-btn">
+                    <i class="fas fa-cog"></i>
+                    Ayarlar
+                </button>
+            </div>
+        </div>
+
+        <!-- Ana Oyun Alanı -->
+        <div class="game-container">
+            <!-- Dünya Haritası -->
+            <div class="world-map">
+                <canvas id="world-canvas" width="1000" height="600"></canvas>
+                <div class="map-controls">
+                    <button id="zoom-in"><i class="fas fa-plus"></i></button>
+                    <button id="zoom-out"><i class="fas fa-minus"></i></button>
+                    <button id="reset-view"><i class="fas fa-home"></i></button>
+                </div>
+            </div>
+
+            <!-- Yan Panel -->
+            <div class="side-panel">
+                <!-- Ülke Bilgileri -->
+                <div class="info-panel">
+                    <h3>🏛️ İmparatorluk Merkezi</h3>
+                    <div class="country-stats">
+                        <div class="stat-item">
+                            <span>Nüfus:</span>
+                            <span id="population">50M</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Mutluluk:</span>
+                            <span id="happiness">85%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Güç Puanı:</span>
+                            <span id="power-score">1250</span>
+                        </div>
+                    </div>
+
+                    <!-- Yapılar -->
+                    <div class="buildings">
+                        <h4>🏗️ Yapılar</h4>
+                        <div class="building-item">
+                            <span>Fabrikalar:</span>
+                            <span id="factories">5</span>
+                            <button class="build-btn" data-building="factory">+</button>
+                        </div>
+                        <div class="building-item">
+                            <span>Laboratuvarlar:</span>
+                            <span id="labs">3</span>
+                            <button class="build-btn" data-building="lab">+</button>
+                        </div>
+                        <div class="building-item">
+                            <span>Kışlalar:</span>
+                            <span id="barracks">2</span>
+                            <button class="build-btn" data-building="barracks">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leaderboard -->
+                <div class="leaderboard">
+                    <h3>🏆 Dünya Sıralaması</h3>
+                    <div id="player-rankings">
+                        <!-- Dinamik olarak doldurulacak -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alt Panel (Chat) -->
+        <div class="bottom-panel">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <h4>💬 Dünya Forumu</h4>
+                    <div class="chat-tabs">
+                        <button class="chat-tab active" data-tab="global">Genel</button>
+                        <button class="chat-tab" data-tab="alliance">İttifak</button>
+                        <button class="chat-tab" data-tab="trade">Ticaret</button>
+                    </div>
+                </div>
+                <div class="chat-messages" id="chat-messages">
+                    <div class="system-message">
+                        <i class="fas fa-info-circle"></i>
+                        World Dominion'a hoş geldiniz! Dünya hakimiyeti için mücadele başlasın!
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="chat-input" placeholder="Mesajınızı yazın... (Enter ile gönder)">
+                    <button id="send-message">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Teknoloji Ağacı Modal -->
+    <div id="tech-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🔬 Teknoloji Ağacı</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="tech-tree">
+                <div class="tech-category">
+                    <h4>⚔️ Askeri Teknolojiler</h4>
+                    <div class="tech-item available" data-tech="gunpowder">
+                        <i class="fas fa-bomb"></i>
+                        <span>Barut</span>
+                        <div class="tech-cost">50 🧪</div>
+                    </div>
+                    <div class="tech-item locked" data-tech="artillery">
+                        <i class="fas fa-cannon"></i>
+                        <span>Topçuluk</span>
+                        <div class="tech-cost">100 🧪</div>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h4>🏭 Endüstriyel Teknolojiler</h4>
+                    <div class="tech-item available" data-tech="steam">
+                        <i class="fas fa-steam"></i>
+                        <span>Buhar Gücü</span>
+                        <div class="tech-cost">75 🧪</div>
+                    </div>
+                    <div class="tech-item locked" data-tech="electricity">
+                        <i class="fas fa-bolt"></i>
+                        <span>Elektrik</span>
+                        <div class="tech-cost">150 🧪</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diplomasi Modal -->
+    <div id="diplomacy-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🤝 Diplomasi Merkezi</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="diplomacy-content">
+                <div class="diplomacy-section">
+                    <h4>🌍 Dünya Liderleri</h4>
+                    <div id="world-leaders">
+                        <!-- Dinamik olarak doldurulacak -->
+                    </div>
+                </div>
+                <div class="diplomacy-actions">
+                    <h4>📜 Diplomatik Eylemler</h4>
+                    <button class="diplo-btn">🤝 İttifak Teklifi</button>
+                    <button class="diplo-btn">💰 Ticaret Anlaşması</button>
+                    <button class="diplo-btn">⚔️ Savaş İlanı</button>
+                    <button class="diplo-btn">🕊️ Barış Antlaşması</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bildirim Sistemi -->
+    <div id="notifications">
+        <!-- Dinamik bildirimler buraya eklenecek -->
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading" class="loading">
+        <div class="loader">
+            <i class="fas fa-globe fa-spin"></i>
+            <p>Dünya yükleniyor...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="js/game-engine.js"></script>
+    <script src="js/world-map.js"></script>
+    <script src="js/diplomacy.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

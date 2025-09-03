@@ -1,0 +1,67 @@
+{
+  "name": "world-dominion-game",
+  "version": "1.0.0",
+  "description": "🌍 Dünya Hakimiyeti Online Multiplayer Strateji Oyunu - World Dominion is an epic online strategy game where players compete for global domination through diplomacy, technology, and warfare.",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"Static files - no build needed\"",
+    "lint": "echo \"Linting not configured yet\"",
+    "clean": "rm -rf node_modules package-lock.json"
+  },
+  "keywords": [
+    "game",
+    "strategy",
+    "multiplayer",
+    "online",
+    "world-domination",
+    "real-time",
+    "socket.io",
+    "canvas",
+    "diplomacy",
+    "technology",
+    "empire",
+    "civilization"
+  ],
+  "author": {
+    "name": "World Dominion Team",
+    "email": "contact@worlddominion.game"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0",
+    "compression": "^1.7.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/world-dominion-game.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/world-dominion-game/issues"
+  },
+  "homepage": "https://github.com/your-username/world-dominion-game#readme",
+  "preferGlobal": false,
+  "private": false,
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "ia32",
+    "arm64"
+  ]
+}
